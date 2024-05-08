@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "seedUsers": "node utils/seeders/seedUsers.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.17.2",
     "graphql": "^16.6.0",
+    "jbassard97nodecolors": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^7.0.2"
   },

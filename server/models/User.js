@@ -1,14 +1,17 @@
 const mongoose = require("mongoose");
-
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
   {
-    username: {
+    firstname: {
       type: String,
       required: true,
-      unique: true,
+      trim: true,
+    },
+    lastname: {
+      type: String,
+      required: true,
       trim: true,
     },
     email: {
@@ -21,6 +24,22 @@ const userSchema = new Schema(
       type: String,
       required: true,
       minlength: 6,
+    },
+    position: {
+      type: String,
+      default: "Not Specified"
+    },
+    availability: {
+      type: Schema.Types.ObjectId,
+      ref: "Availability",
+    },
+    schedule: {
+      type: Schema.Types.ObjectId,
+      ref: "Schedule",
+    },
+    store: {
+      type: Schema.Types.ObjectId,
+      ref: "Store",
     },
   },
   {

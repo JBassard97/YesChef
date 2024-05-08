@@ -1,0 +1,62 @@
+[
+  {
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john@example.com",
+    "password": "password123"
+  },
+  {
+    "firstname": "Jane",
+    "lastname": "Smith",
+    "email": "jane@example.com",
+    "password": "password456"
+  },
+  {
+    "firstname": "Michael",
+    "lastname": "Johnson",
+    "email": "michael@example.com",
+    "password": "password789"
+  },
+  {
+    "firstname": "Emily",
+    "lastname": "Brown",
+    "email": "emily@example.com",
+    "password": "passwordabc"
+  },
+  {
+    "firstname": "David",
+    "lastname": "Wilson",
+    "email": "david@example.com",
+    "password": "passworddef"
+  },
+  {
+    "firstname": "Olivia",
+    "lastname": "Taylor",
+    "email": "olivia@example.com",
+    "password": "passwordegf"
+  },
+  {
+    "firstname": "James",
+    "lastname": "Martinez",
+    "email": "james@example.com",
+    "password": "passwordhij"
+  },
+  {
+    "firstname": "Sophia",
+    "lastname": "Anderson",
+    "email": "sophia@example.com",
+    "password": "passwordklm"
+  },
+  {
+    "firstname": "William",
+    "lastname": "Thomas",
+    "email": "william@example.com",
+    "password": "passwordnop"
+  },
+  {
+    "firstname": "Isabella",
+    "lastname": "Garcia",
+    "email": "isabella@example.com",
+    "password": "passwordqrs"
+  }
+]
