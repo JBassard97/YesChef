@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js",
-    "seedUsers": "node utils/seeders/seedUsers.js"
+    "seedUsers": "node utils/seeders/seedUsers.js",
+    "clearDb": "node utils/seeders/clearDb.js",
+    "seedScheds": "node utils/seeders/seedSchedules.js"
   },
   "keywords": [],
   "author": "",

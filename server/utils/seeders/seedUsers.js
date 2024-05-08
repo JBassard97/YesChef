@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../../models/User");
-
+const {successLog, failureLog, completeLog } = require("../misc/colorLogs");
 const fakeUsers = require("./seeds/userSeeds.json");
 
 mongoose.connect("mongodb://localhost:27017/YesChef", {
@@ -12,11 +12,12 @@ const seedUsers = async () => {
     try {
         for (let user of fakeUsers) {
             await User.create(user);
-            console.log(`User '${user.firstname}' added to database`)
+            successLog(`User '${user.firstname}' added to database`)
         }
-        console.log("All Users added successfully");
+        completeLog("All Users added successfully");
     } catch (error) {
-        console.error("Error seeding users:\n", error)
+        failureLog("Error seeding users:\n")
+        console.error(error);
     } finally {
         mongoose.disconnect();
     }

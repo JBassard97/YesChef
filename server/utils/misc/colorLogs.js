@@ -12,3 +12,5 @@ const failureLog = (text) => {
 const completeLog = (text) => {
   console.log(RainbowText(text));
 };
+
+module.exports = { successLog, failureLog, completeLog };
