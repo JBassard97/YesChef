@@ -8,7 +8,9 @@
     "watch": "nodemon server.js",
     "seedUsers": "node utils/seeders/seedUsers.js",
     "clearDb": "node utils/seeders/clearDb.js",
-    "seedScheds": "node utils/seeders/seedSchedules.js"
+    "seedScheds": "node utils/seeders/seedSchedules.js",
+    "seedStores": "node utils/seeders/seedStores.js",
+    "seedAll": "npm run seedUsers && npm run seedScheds && npm run seedStores"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,7 @@
     "mongoose": "^7.0.2"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "nodemon": "^2.0.3"
   }
 }

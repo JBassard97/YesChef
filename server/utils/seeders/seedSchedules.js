@@ -35,8 +35,10 @@ const seedSchedsAndAvails = async () => {
     failureLog("Error seeding Schedules or Availabilities:\n");
     console.error(error);
   } finally {
-    mongoose.connection.close();
+    mongoose.disconnect();
   }
 };
 
 seedSchedsAndAvails();
+
+module.exports = { seedSchedsAndAvails };

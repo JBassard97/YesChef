@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Pizza Palace",
+    "address": "123 Main Street"
+  },
+  {
+    "name": "Burger Barn",
+    "address": "456 Elm Street"
+  },
+  {
+    "name": "Taco Tavern",
+    "address": "789 Oak Street"
+  },
+  {
+    "name": "Sushi Spot",
+    "address": "321 Pine Street"
+  }
+]

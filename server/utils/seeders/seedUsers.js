@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("../../models/User");
+const { User } = require("../../models");
 const {successLog, failureLog, completeLog } = require("../misc/colorLogs");
 const fakeUsers = require("./seeds/userSeeds.json");
 
@@ -24,3 +24,5 @@ const seedUsers = async () => {
 };
 
 seedUsers();
+
+module.exports = { seedUsers };
