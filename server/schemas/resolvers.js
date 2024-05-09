@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Availability, Schedule, Store } = require("../models");
 const bcrypt = require("bcrypt");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
@@ -13,12 +13,27 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (parent, { username }) => {
-      const user = await User.findOne({ username });
+    user: async (parent, { _id }) => {
+      const user = await User.findById({ _id });
       if (!user) {
         throw new Error("User not found with that username!");
       }
       return user;
+    },
+    stores: async () => {
+      return Store.find().populate("employees");
+    },
+    store: async (parent, { _id }) => {
+      const store = await Store.findById(_id).populate({
+        path: "employees",
+        populate: {
+          path: "availability schedule",
+        },
+      });
+      if (!store) {
+        throw new Error("Store not found with that ID!");
+      }
+      return store;
     },
   },
 
