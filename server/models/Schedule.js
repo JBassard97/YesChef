@@ -3,10 +3,13 @@ const { Schema } = mongoose;
 
 const scheduleSchema = new Schema(
   {
-    userId: {
+    bossId: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true,
+    },
+    employeeId: {
+      type: Schema.Types.ObjectId,
+      ref: "Employee",
     },
     monday: {
       type: String,

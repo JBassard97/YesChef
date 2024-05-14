@@ -1,6 +1,6 @@
 const User = require("./User");
 const Availability = require("./Availability");
-const Store = require("./Store");
+const Employee = require("./Employee");
 const Schedule = require("./Schedule");
 
-module.exports = { User, Availability, Store, Schedule };
+module.exports = { User, Availability, Employee, Schedule };

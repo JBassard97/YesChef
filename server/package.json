@@ -5,12 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon server.js",
-    "clearDb": "node utils/seeders/clearDb.js",
-    "seedUsers": "node utils/seeders/seedUsers.js",
-    "seedScheds": "node utils/seeders/seedSchedules.js",
-    "seedStores": "node utils/seeders/seedStores.js",
-    "seedAll": "npm run seedUsers && npm run seedScheds && npm run seedStores"
+    "watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "",

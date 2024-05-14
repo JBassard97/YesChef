@@ -27,7 +27,10 @@ const userSchema = new Schema(
     },
     position: {
       type: String,
-      default: "Not Specified"
+      default: "General Manager",
+    },
+    phone: {
+      type: String,
     },
     availability: {
       type: Schema.Types.ObjectId,
@@ -41,6 +44,11 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Store",
     },
+    employees: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Employee"
+      }]
   },
   {
     toJSON: {

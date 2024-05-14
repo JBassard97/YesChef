@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { User, Availability, Schedule, Store } = require("../../models");
+const { User, Availability, Schedule, Employee } = require("../../models");
 const { failureLog, completeLog } = require("../misc/colorLogs");
 
 mongoose.connect("mongodb://localhost:27017/YesChef", {
@@ -10,12 +10,12 @@ mongoose.connect("mongodb://localhost:27017/YesChef", {
 const clearDatabase = async () => {
   try {
     // Remove all documents from each collection
-    await User.deleteMany();
+    await Employee.deleteMany();
     await Availability.deleteMany();
     await Schedule.deleteMany();
-    await Store.deleteMany();
+    await User.deleteMany();
 
-    completeLog("Database cleared successfully.");
+    completeLog("Database cleared successfully!\n");
   } catch (error) {
     failureLog("Error clearing database:\n");
     console.error(error);
