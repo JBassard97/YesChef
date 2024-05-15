@@ -8,10 +8,25 @@ type User {
   phone: String
   availability: Availability
   schedule: Schedule
+  employees: [Employee]
+}
+
+type Employee {
+  _id: ID
+  bossId: ID
+  firstname: String!
+  lastname: String!
+  email: String!
+  position: String
+  phone: String
+  availability: Availability
+  schedule: Schedule
 }
 
 type Availability {
   _id: ID
+  bossId: ID
+  employeeId: ID
   userId: ID
   monday: String
   tuesday: String
@@ -24,6 +39,8 @@ type Availability {
 
 type Schedule {
   _id: ID
+  bossId: ID
+  employeeId: ID
   userId: ID
   monday: String
   tuesday: String

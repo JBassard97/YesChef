@@ -1,11 +1,7 @@
 .welcome-header-full {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
   background: black;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   color: white;
   padding: 5px 0px;
 }

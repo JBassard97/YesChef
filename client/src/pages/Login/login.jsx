@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
-import Footer from "../../components/Footer/Footer";
-import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader";
 import Auth from "../../utils/auth";
 import "./Login.css";
 
@@ -44,8 +42,6 @@ const Login = (props) => {
 
   return (
     <>
-      <WelcomeHeader/>
-
       <main className="login-full">
         <h4 className="">Login</h4>
         <form className="login-form" onSubmit={handleFormSubmit}>
@@ -84,8 +80,6 @@ const Login = (props) => {
 
         <Link to="/signup">Don't have an account? Signup!</Link>
       </main>
-
-      <Footer />
     </>
   );
 };

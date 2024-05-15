@@ -6,7 +6,21 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id })
+          .populate("availability")
+          .populate("schedule")
+          .populate({
+            path: "employees", // Populate the employees field
+            populate: {
+              path: "availability", // Populate the availability field for each employee
+            },
+          })
+          .populate({
+            path: "employees", // Populate the employees field
+            populate: {
+              path: "schedule", // Populate the schedule field for each employee
+            },
+          });
       }
       throw new AuthenticationError();
     },
@@ -35,7 +49,7 @@ const resolvers = {
       user.schedule = newSchedule._id;
 
       await user.save();
-      
+
       const token = signToken(user);
       return { token, user };
     },

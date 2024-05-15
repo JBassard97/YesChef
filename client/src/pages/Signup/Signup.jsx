@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { CREATE_USER } from "../../utils/mutations";
-import Footer from "../../components/Footer/Footer";
-import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader";
 import Auth from "../../utils/auth";
 import "./Signup.css";
 
@@ -57,7 +55,6 @@ const Signup = () => {
 
   return (
     <>
-      <WelcomeHeader />
 
       <main className="signup-full">
         <h4 className="">Sign Up</h4>
@@ -134,7 +131,6 @@ const Signup = () => {
 
         <Link to="/">Already have an account? Login!</Link>
       </main>
-      <Footer />
     </>
   );
 };

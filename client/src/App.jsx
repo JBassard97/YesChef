@@ -6,6 +6,8 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { Outlet } from "react-router-dom";
+import WelcomeHeader from "./components/WelcomeHeader/WelcomeHeader";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 const httpLink = createHttpLink({
@@ -34,7 +36,9 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
+        <WelcomeHeader />
         <Outlet />
+        <Footer />
       </ApolloProvider>
     </>
   );
