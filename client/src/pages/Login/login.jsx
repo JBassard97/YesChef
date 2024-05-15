@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
-import LogoutButton from "../../components/LogoutButton/LogoutButton";
-
+import Footer from "../../components/Footer/Footer";
+import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader";
 import Auth from "../../utils/auth";
-
-import Signup from "./Signup";
+import "./Login.css";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -44,65 +43,50 @@ const Login = (props) => {
   };
 
   return (
-    <main className="loginContainer container mb-4">
-      <LogoutButton />
-      <div className="d-flex justify-content-center col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{" "}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input w-50"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  style={{
-                    marginBottom: 15,
-                  }}
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <br />
-                <input
-                  className="form-input w-50"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <br />
-                <button
-                  className="btn btn-block btn-lg btn-primary"
-                  style={{
-                    cursor: "pointer",
-                    marginTop: 25,
-                  }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+    <>
+      <WelcomeHeader/>
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      <div className="signup">
-        <Signup />
-      </div>
-    </main>
+      <main className="login-full">
+        <h4 className="">Login</h4>
+        <form className="login-form" onSubmit={handleFormSubmit}>
+          <input
+            className="w-50"
+            placeholder="Email"
+            name="email"
+            type="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+          <br />
+          <input
+            className="w-50"
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={formState.password}
+            onChange={handleChange}
+          />
+          <br />
+          <button
+            className="btn btn-block btn-primary"
+            style={{
+              cursor: "pointer",
+            }}
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+
+        {error && (
+          <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+        )}
+
+        <Link to="/signup">Don't have an account? Signup!</Link>
+      </main>
+
+      <Footer />
+    </>
   );
 };
 

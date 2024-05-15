@@ -46,8 +46,6 @@ input CreateUserInput {
   password: String!
   position: String
   phone: String
-  availability: ID
-  schedule: ID
 }
 
 input UpdateUserInput {

@@ -15,7 +15,7 @@ const resolvers = {
     },
     user: async (parent, { _id }) => {
       const user = await User.findById({ _id });
-        
+
       if (!user) {
         throw new Error("User not found with that username!");
       }
@@ -26,6 +26,16 @@ const resolvers = {
   Mutation: {
     createUser: async (parent, { input }) => {
       const user = await User.create(input);
+      // ! Assigning a boilerplate avail and sched and linking
+      const newAvailability = await Availability.create({ bossId: user._id });
+      const newSchedule = await Schedule.create({ bossId: user._id });
+
+      // ! Linking above to new user
+      user.availability = newAvailability._id;
+      user.schedule = newSchedule._id;
+
+      await user.save();
+      
       const token = signToken(user);
       return { token, user };
     },
