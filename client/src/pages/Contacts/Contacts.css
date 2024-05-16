@@ -1,0 +1,20 @@
+.contacts-full {
+ width: 100%;
+}
+
+.contact-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-form p {
+    margin: 0;
+}
+
+.contact-form input {
+    margin-bottom: 5px;
+    width: 100%;
+}

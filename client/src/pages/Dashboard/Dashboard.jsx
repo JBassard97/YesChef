@@ -23,7 +23,6 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
-    // ! If GraphQL data is present, turn into states for user and employees
     if (data) {
       console.log("User Data:\n", data.me);
       setUserData(data.me);

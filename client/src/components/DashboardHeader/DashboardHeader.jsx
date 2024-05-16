@@ -1,20 +1,36 @@
 import "./DashboardHeader.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function DashboardHeader() {
+  const location = useLocation();
+
   return (
     <>
       <div className="dashboard-header-full">
-        <Link className="tab settings" to="/settings">
+        <Link
+          className={`tab ${location.pathname === "/settings" ? "active" : ""}`}
+          to="/settings"
+        >
           <div>Settings</div>
         </Link>
-        <Link className="tab employees" to="/employees">
+        <Link
+          className={`tab ${
+            location.pathname === "/employees" ? "active" : ""
+          }`}
+          to="/employees"
+        >
           <div>Employees</div>
         </Link>
-        <Link className="tab schedule" to="/schedule">
+        <Link
+          className={`tab ${location.pathname === "/schedule" ? "active" : ""}`}
+          to="/schedule"
+        >
           <div>Schedule</div>
         </Link>
-        <Link className="tab lists" to="/contacts">
+        <Link
+          className={`tab ${location.pathname === "/contacts" ? "active" : ""}`}
+          to="/contacts"
+        >
           <div>Contacts</div>
         </Link>
       </div>
