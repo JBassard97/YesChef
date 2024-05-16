@@ -1,4 +1,5 @@
 .dashboard-header-full {
+    width: 100%;
     background: lightblue;
     display: flex;
     justify-content: space-evenly;

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const employeeSchema = new Schema(
-    {
+  {
     bossId: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -24,10 +24,14 @@ const employeeSchema = new Schema(
     },
     position: {
       type: String,
-      default: "Not Specified",
+      default: "N/A",
     },
     phone: {
       type: String,
+    },
+    rate: {
+      type: String,
+      default: "00.00"
     },
     availability: {
       type: Schema.Types.ObjectId,

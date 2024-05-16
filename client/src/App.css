@@ -11,3 +11,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.page-header {
+  text-decoration: underline;
+}

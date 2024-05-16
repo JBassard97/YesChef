@@ -1,0 +1,47 @@
+.dashboard-full {
+  padding-bottom: 5rem;
+}
+
+.top-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.current-date-time {
+  color: blue;
+}
+
+.personalized-welcome {
+  color: grey;
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
+
+.position {
+    margin-bottom: 1rem;
+}
+
+.employee-section-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.employee-section-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.employee-table {
+    width: 100%;
+}
+
+th,
+td {
+  text-align: center;
+}

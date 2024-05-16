@@ -37,6 +37,7 @@ export const GET_CURRENT_USER = gql`
         lastname
         position
         phone
+        rate
         email
         availability {
           _id

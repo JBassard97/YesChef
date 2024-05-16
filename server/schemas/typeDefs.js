@@ -19,6 +19,7 @@ type Employee {
   email: String!
   position: String
   phone: String
+  rate: String
   availability: Availability
   schedule: Schedule
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { CREATE_USER } from "../../utils/mutations";
@@ -15,6 +15,12 @@ const Signup = () => {
     password: "",
   });
   const [createUser, { error, data }] = useMutation(CREATE_USER);
+
+  useEffect(() => {
+    if (Auth.loggedIn()) {
+      window.location = "/dashboard";
+    }
+  }, []);
 
   const formatPhoneNumber = (phoneNumber) => {
     // Remove all non-digit characters from the phone number
@@ -55,7 +61,6 @@ const Signup = () => {
 
   return (
     <>
-
       <main className="signup-full">
         <h4 className="">Sign Up</h4>
         <form className="signup-form" onSubmit={handleFormSubmit}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
@@ -8,6 +8,12 @@ import "./Login.css";
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  useEffect(() => {
+    if (Auth.loggedIn()) {
+      window.location = "/dashboard";
+    }
+  }, []);
 
   // update state based on form input changes
   const handleChange = (event) => {
