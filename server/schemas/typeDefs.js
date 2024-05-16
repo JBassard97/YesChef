@@ -9,6 +9,7 @@ type User {
   availability: Availability
   schedule: Schedule
   employees: [Employee]
+  contacts: [Contact]
 }
 
 type Employee {
@@ -50,6 +51,12 @@ type Schedule {
   friday: String
   saturday: String
   sunday: String
+}
+
+type Contact {
+  _id: ID!
+  contactname: String!
+  contacttext: String!
 }
 
 type Auth {
@@ -108,6 +115,7 @@ type Mutation {
   updateUser(_id: ID!, input: UpdateUserInput!): User
   login(email: String!, password: String!): Auth
   deleteUser(_id: ID!): User
+  createContact(contactname: String!, contacttext: String!): Contact!
   updateAvailability(userId: ID!, input: UpdateAvailabilityInput!): Availability
   updateSchedule(userId: ID!, input: UpdateScheduleInput!): Schedule
 }

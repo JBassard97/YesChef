@@ -16,6 +16,16 @@ export const CREATE_USER = gql`
   }
 `;
 
+export const CREATE_CONTACT = gql`
+  mutation CreateContact($contactname: String!, $contacttext: String!) {
+    createContact(contactname: $contactname, contacttext: $contacttext) {
+      _id
+      contactname
+      contacttext
+    }
+  }
+`;
+
 // ! GOOD
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {

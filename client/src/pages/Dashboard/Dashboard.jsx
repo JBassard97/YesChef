@@ -13,7 +13,7 @@ export default function Dashboard() {
   const { loading, data } = useQuery(GET_CURRENT_USER);
   const [userData, setUserData] = useState(null);
   const [employeeData, setEmployeeData] = useState(null);
-  const [sortOrder, setSortOrder] = useState(null);
+  const [sortOrder, setSortOrder] = useState("CreatedFirstToLast");
 
   useEffect(() => {
     // ! If not logged in, go back to login page

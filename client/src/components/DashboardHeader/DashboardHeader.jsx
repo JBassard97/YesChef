@@ -14,8 +14,8 @@ export default function DashboardHeader() {
         <Link className="tab schedule" to="/schedule">
           <div>Schedule</div>
         </Link>
-        <Link className="tab lists" to="/lists">
-          <div>Lists</div>
+        <Link className="tab lists" to="/contacts">
+          <div>Contacts</div>
         </Link>
       </div>
     </>

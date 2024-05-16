@@ -9,6 +9,7 @@ import Signup from "./pages/Signup/Signup.jsx";
 
 // ! Logged in pages
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import Contacts from "./pages/Contacts/Contacts.jsx";
 
 // ! Footer pages
 import Help from "./pages/Help/Help.jsx";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/testimonials",
         element: <Testimonials />,
+      },
+      {
+        path: "/contacts",
+        element: <Contacts />,
       },
     ],
   },

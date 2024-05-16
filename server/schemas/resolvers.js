@@ -1,4 +1,10 @@
-const { User, Availability, Schedule, Employee } = require("../models");
+const {
+  User,
+  Availability,
+  Schedule,
+  Employee,
+  Contact,
+} = require("../models");
 const bcrypt = require("bcrypt");
 const { signToken, AuthenticationError } = require("../utils/auth");
 
@@ -9,6 +15,7 @@ const resolvers = {
         return User.findOne({ _id: context.user._id })
           .populate("availability")
           .populate("schedule")
+          .populate("contacts")
           .populate({
             path: "employees", // Populate the employees field
             populate: {
@@ -52,6 +59,24 @@ const resolvers = {
 
       const token = signToken(user);
       return { token, user };
+    },
+    createContact: async (_, { contactname, contacttext }, context) => {
+      try {
+        const contact = await Contact.create({
+          contactname,
+          contacttext,
+        });
+
+        const userId = context.user._id;
+        await User.findByIdAndUpdate(userId, {
+          $push: { contacts: contact._id },
+        });
+
+        await contact.save();
+        return contact;
+      } catch (error) {
+        throw new Error("Failed to create contact");
+      }
     },
     updateUser: async (parent, { _id, input }) => {
       if (input.password) {

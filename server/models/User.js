@@ -40,15 +40,18 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Schedule",
     },
-    store: {
-      type: Schema.Types.ObjectId,
-      ref: "Store",
-    },
     employees: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Employee"
-      }]
+        ref: "Employee",
+      },
+    ],
+    contacts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Contact",
+      },
+    ],
   },
   {
     toJSON: {

@@ -31,6 +31,11 @@ export const GET_CURRENT_USER = gql`
         saturday
         sunday
       }
+      contacts {
+        _id
+        contactname
+        contacttext
+      }
       employees {
         _id
         firstname
