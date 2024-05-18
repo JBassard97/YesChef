@@ -13,6 +13,7 @@ export default function Dashboard() {
   const { loading, data } = useQuery(GET_CURRENT_USER);
   const [userData, setUserData] = useState(null);
   const [employeeData, setEmployeeData] = useState(null);
+  const [contactData, setContactData] = useState(null);
   const [sortOrder, setSortOrder] = useState("CreatedFirstToLast");
 
   useEffect(() => {
@@ -31,8 +32,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (userData) {
-      console.log(userData.employees);
       setEmployeeData(userData.employees);
+      setContactData(userData.contacts);
+      console.log("Employee Data:\n", userData.employees);
+      console.log("Contact Data:\n", userData.contacts);
     }
   }, [userData]);
 
@@ -58,44 +61,47 @@ export default function Dashboard() {
             <p className="personalized-welcome position">
               ({userData.position})
             </p>
-            <div className="employee-section-full">
-              <div className="employee-section-header">
-                <h5>
-                  <Link to="/employees">
-                    Employee Count: {employeeData?.length}
-                  </Link>
-                </h5>
-                <select value={sortOrder} onChange={handleSortChange}>
-                  <option value="CreatedFirstToLast">
-                    Created 1st to Last
-                  </option>
-                  <option value="CreatedLastToFirst">
-                    Created Last to 1st
-                  </option>
-                  <option value="LastNameAtoZ">Last Name A to Z</option>
-                  <option value="LastNameZtoA">Last Name Z to A</option>
-                  <option value="FirstNameAtoZ">First Name A to Z</option>
-                  <option value="FirstNameZtoA">First Name Z to A</option>
-                  <option value="TitleAtoZ">Title A to Z</option>
-                  <option value="TitleZtoA">Title Z to A</option>
-                  <option value="RateHighToLow">Rate High to Low</option>
-                  <option value="RateLowToHigh">Rate Low to High</option>
-                </select>
-              </div>
-              <table className="employee-table">
-                <thead>
-                  <tr>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>Title</th>
-                    <th>Rate($)</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {employeeData &&
-                    sortEmployees(employeeData, sortOrder).map(
+
+            <div className="page-break"></div>
+
+            {employeeData && (
+              <div className="employee-section-full">
+                <div className="employee-section-header">
+                  <h5>
+                    <Link to="/employees">
+                      Employees: {employeeData?.length}
+                    </Link>
+                  </h5>
+                  <select value={sortOrder} onChange={handleSortChange}>
+                    <option value="CreatedFirstToLast">
+                      Created 1st to Last
+                    </option>
+                    <option value="CreatedLastToFirst">
+                      Created Last to 1st
+                    </option>
+                    <option value="LastNameAtoZ">Last Name A to Z</option>
+                    <option value="LastNameZtoA">Last Name Z to A</option>
+                    <option value="FirstNameAtoZ">First Name A to Z</option>
+                    <option value="FirstNameZtoA">First Name Z to A</option>
+                    <option value="TitleAtoZ">Title A to Z</option>
+                    <option value="TitleZtoA">Title Z to A</option>
+                    <option value="RateHighToLow">Rate High to Low</option>
+                    <option value="RateLowToHigh">Rate Low to High</option>
+                  </select>
+                </div>
+                <table className="employee-table">
+                  <thead>
+                    <tr>
+                      <th>First</th>
+                      <th>Last</th>
+                      <th>Title</th>
+                      <th>Rate($)</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sortEmployees(employeeData, sortOrder).map(
                       (employee, index) => (
                         <tr key={index}>
                           <td>{employee.firstname}</td>
@@ -127,9 +133,56 @@ export default function Dashboard() {
                         </tr>
                       )
                     )}
-                </tbody>
-              </table>
-            </div>
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            <div className="page-break"></div>
+
+            {contactData && (
+              <>
+                <div className="contact-section-full">
+                  <div className="contact-section-header">
+                    <h5>
+                      <Link to="/contacts">
+                        Contacts: {contactData?.length}
+                      </Link>
+                    </h5>
+                    <select>
+                      <option value="CreatedFirstToLast">
+                        Created 1st to Last
+                      </option>
+                      <option value="CreatedLastToFirst">
+                        Created Last to 1st
+                      </option>
+                      <option value="ContactNameAtoZ">
+                        Contact Name A to Z
+                      </option>
+                      <option value="ContactNameZtoA">
+                        Contact Name Z to A
+                      </option>
+                    </select>
+                  </div>
+                  <table className="contact-table">
+                    <thead>
+                      <tr>
+                        <th>Contact</th>
+                        <th>Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...contactData].reverse().map((contact, index) => (
+                        <tr key={index}>
+                          <td>{contact.contactname}</td>
+                          <td>{contact.contacttext}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            )}
           </>
         ) : (
           <h1>Loading...</h1>

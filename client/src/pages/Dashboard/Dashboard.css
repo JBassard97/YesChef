@@ -21,27 +21,41 @@
 }
 
 .position {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
-.employee-section-full {
+.employee-section-full,
+.contact-section-full {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.employee-section-header {
+.employee-section-header,
+.contact-section-header {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
-.employee-table {
-    width: 100%;
+.employee-table,
+.contact-table {
+  width: 100%;
 }
 
-th,
-td {
+.employee-table th,
+.employee-table td,
+.contact-table th,
+.contact-table td {
   text-align: center;
+  padding: 5px 0px;
+  margin: 0;
+}
+
+.page-break {
+  height: 3px;
+  margin: 10px;
+  background: lightgrey;
+  border-radius: 5px;
 }

@@ -78,6 +78,24 @@ const resolvers = {
         throw new Error("Failed to create contact");
       }
     },
+    deleteContact: async (parent, { _id }, context) => {
+      try {
+        const contact = await Contact.findByIdAndDelete(_id);
+        if (!contact) {
+          throw new Error("Contact not found");
+        }
+
+        const userId = context.user._id;
+        await User.findByIdAndUpdate(userId, {
+          $pull: { contacts: contact._id },
+        });
+
+        return contact;
+      } catch (error) {
+        console.error("Error deleting contact:", error);
+        throw new Error("An error occurred while deleting the contact.");
+      }
+    },
     updateUser: async (parent, { _id, input }) => {
       if (input.password) {
         const saltRounds = 10;

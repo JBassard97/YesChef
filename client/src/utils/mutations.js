@@ -26,6 +26,16 @@ export const CREATE_CONTACT = gql`
   }
 `;
 
+export const DELETE_CONTACT = gql`
+  mutation DeleteContact($id: ID!) {
+    deleteContact(_id: $id) {
+      _id
+      contactname
+      contacttext
+    }
+  }
+`;
+
 // ! GOOD
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {

@@ -116,6 +116,7 @@ type Mutation {
   login(email: String!, password: String!): Auth
   deleteUser(_id: ID!): User
   createContact(contactname: String!, contacttext: String!): Contact!
+  deleteContact(_id: ID!): Contact
   updateAvailability(userId: ID!, input: UpdateAvailabilityInput!): Availability
   updateSchedule(userId: ID!, input: UpdateScheduleInput!): Schedule
 }
