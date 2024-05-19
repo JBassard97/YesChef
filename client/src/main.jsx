@@ -17,6 +17,7 @@ import Testimonials from "./pages/Testimonials/Testimonials.jsx";
 import About from "./pages/About/About.jsx";
 import Developer from "./pages/Developer/Developer.jsx";
 import Stats from "./pages/Stats/Stats.jsx";
+import Employees from "./pages/Employees/Employees.jsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/contacts",
         element: <Contacts />,
+      },
+      {
+        path: "/employees",
+        element: <Employees />,
       },
     ],
   },
