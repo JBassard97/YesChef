@@ -1,3 +1,16 @@
 .employees-full {
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
+}
+
+.employee-row {
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+.employee-row:hover {
+  background: lightblue;
+}
+
+.employee-row.selected {
+  background-color: skyblue;
 }

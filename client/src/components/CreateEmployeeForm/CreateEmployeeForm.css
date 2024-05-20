@@ -1,0 +1,25 @@
+.create-employee-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-employee-form div p {
+    margin: 0;
+}
+
+.form-input {
+    margin: 0px 10px;
+    text-align: center;
+}
+
+.form-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.create-employee-form button {
+    margin-top: 5px;
+}

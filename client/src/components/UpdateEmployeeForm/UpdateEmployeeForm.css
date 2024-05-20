@@ -1,0 +1,24 @@
+.update-employee-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.update-employee-form div p {
+    margin: 0;
+}
+
+.form-input {
+    margin: 0px 10px;
+}
+
+.form-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.update-employee-form button {
+    margin-top: 5px;
+}

@@ -96,6 +96,47 @@ const resolvers = {
         throw new Error("An error occurred while deleting the contact.");
       }
     },
+    createEmployee: async (parent, { input }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+      const userId = context.user._id;
+
+      const employee = await Employee.create({ ...input, bossId: userId });
+      const availability = await Availability.create({
+        employeeId: employee._id,
+        bossId: userId,
+      });
+      const schedule = await Schedule.create({
+        employeeId: employee._id,
+        bossId: userId,
+      });
+
+      employee.availability = availability._id;
+      employee.schedule = schedule._id;
+      await employee.save();
+
+      await User.findByIdAndUpdate(userId, {
+        $push: { employees: employee._id },
+      });
+
+      return employee;
+    },
+    updateEmployee: async (parent, { _id, input }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      const updatedEmployee = await Employee.findByIdAndUpdate(_id, input, {
+        new: true,
+      });
+
+      if (!updatedEmployee) {
+        throw new Error("Employee not found");
+      }
+
+      return updatedEmployee;
+    },
     updateUser: async (parent, { _id, input }) => {
       if (input.password) {
         const saltRounds = 10;

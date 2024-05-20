@@ -1,8 +1,10 @@
-import { useQuery, useMutation } from "@apollo/client";
-import { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
+import React, { useEffect, useState, useRef } from "react";
 import { GET_CURRENT_USER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
+import CreateEmployeeForm from "../../components/CreateEmployeeForm/CreateEmployeeForm";
+import UpdateEmployeeForm from "../../components/UpdateEmployeeForm/UpdateEmployeeForm";
 import sortEmployees from "../../utils/sortEmployees";
 
 import "./Employees.css";
@@ -12,9 +14,10 @@ export default function Employees() {
   const [userData, setUserData] = useState(null);
   const [employeeData, setEmployeeData] = useState(null);
   const [sortOrder, setSortOrder] = useState("CreatedFirstToLast");
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const rowRefs = useRef([]);
 
   useEffect(() => {
-    // ! If not logged in, go back to login page
     if (!Auth.loggedIn()) {
       window.location = "/";
     }
@@ -36,6 +39,18 @@ export default function Employees() {
 
   const handleSortChange = (event) => {
     setSortOrder(event.target.value);
+  };
+
+  const handleRowClick = (employee, index) => {
+    setSelectedEmployee(null);
+    setSelectedEmployee(selectedEmployee === employee ? null : employee);
+    if (rowRefs.current[index]) {
+      rowRefs.current[index].scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
   };
 
   return (
@@ -77,41 +92,63 @@ export default function Employees() {
               <tbody>
                 {sortEmployees(employeeData, sortOrder).map(
                   (employee, index) => (
-                    <tr key={index}>
-                      <td>{employee.firstname}</td>
-                      <td>{employee.lastname}</td>
-                      <td>{employee.position}</td>
-                      <td>{employee.rate}</td>
-                      <td>
-                        <a
-                          href={`tel:${employee.phone}`}
-                          style={{
-                            textDecoration: "none",
-                            color: "inherit",
-                          }}
-                        >
-                          📞
-                        </a>
-                      </td>
-                      <td>
-                        <a
-                          href={"mailto:" + employee.email}
-                          style={{
-                            textDecoration: "none",
-                            color: "inherit",
-                          }}
-                        >
-                          ✉️
-                        </a>
-                      </td>
-                    </tr>
+                    <React.Fragment key={index}>
+                      <tr
+                        ref={(el) => (rowRefs.current[index] = el)}
+                        className={`employee-row ${
+                          selectedEmployee &&
+                          selectedEmployee._id === employee._id
+                            ? "selected"
+                            : ""
+                        }`}
+                        onClick={() => handleRowClick(employee, index)}
+                      >
+                        <td>{employee.firstname}</td>
+                        <td>{employee.lastname}</td>
+                        <td>{employee.position}</td>
+                        <td>{employee.rate}</td>
+                        <td>
+                          <a
+                            href={`tel:${employee.phone}`}
+                            style={{
+                              textDecoration: "none",
+                              color: "inherit",
+                            }}
+                          >
+                            📞
+                          </a>
+                        </td>
+                        <td>
+                          <a
+                            href={"mailto:" + employee.email}
+                            style={{
+                              textDecoration: "none",
+                              color: "inherit",
+                            }}
+                          >
+                            ✉️
+                          </a>
+                        </td>
+                      </tr>
+                      {selectedEmployee &&
+                        selectedEmployee._id === employee._id && (
+                          <tr>
+                            <td colSpan="6">
+                              <UpdateEmployeeForm employee={selectedEmployee} />
+                            </td>
+                          </tr>
+                        )}
+                    </React.Fragment>
                   )
                 )}
               </tbody>
             </table>
           </div>
         )}
+
+        <CreateEmployeeForm />
       </div>
     </>
   );
 }
+

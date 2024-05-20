@@ -36,6 +36,46 @@ export const DELETE_CONTACT = gql`
   }
 `;
 
+export const CREATE_EMPLOYEE = gql`
+  mutation CreateEmployee($input: CreateEmployeeInput!) {
+    createEmployee(input: $input) {
+      _id
+      firstname
+      lastname
+      email
+      position
+      phone
+      rate
+      availability {
+        _id
+      }
+      schedule {
+        _id
+      }
+    }
+  }
+`;
+
+export const UPDATE_EMPLOYEE = gql`
+  mutation UpdateEmployee($id: ID!, $input: UpdateEmployeeInput!) {
+    updateEmployee(_id: $id, input: $input) {
+      _id
+      firstname
+      lastname
+      email
+      position
+      phone
+      rate
+      availability {
+        _id
+      }
+      schedule {
+        _id
+      }
+    }
+  }
+`;
+
 // ! GOOD
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {

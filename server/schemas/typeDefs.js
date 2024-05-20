@@ -73,6 +73,24 @@ input CreateUserInput {
   phone: String
 }
 
+input CreateEmployeeInput {
+  firstname: String!
+  lastname: String!
+  email: String!
+  position: String
+  phone: String
+  rate: String
+}
+
+input UpdateEmployeeInput {
+  firstname: String
+  lastname: String
+  email: String
+  position: String
+  phone: String
+  rate: String
+}
+
 input UpdateUserInput {
   firstname: String
   lastname: String
@@ -115,6 +133,8 @@ type Mutation {
   updateUser(_id: ID!, input: UpdateUserInput!): User
   login(email: String!, password: String!): Auth
   deleteUser(_id: ID!): User
+  createEmployee(input: CreateEmployeeInput!): Employee
+  updateEmployee(_id: ID! input: UpdateEmployeeInput!): Employee
   createContact(contactname: String!, contacttext: String!): Contact!
   deleteContact(_id: ID!): Contact
   updateAvailability(userId: ID!, input: UpdateAvailabilityInput!): Availability
