@@ -1,0 +1,12 @@
+.delete-employee-form {
+  background: #ff9992;
+  padding: 5px 0px;
+}
+
+.press-count-tracker {
+  font-weight: bold;
+}
+
+.last-chance {
+  color: red;
+}

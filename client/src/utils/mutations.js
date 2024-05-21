@@ -76,6 +76,32 @@ export const UPDATE_EMPLOYEE = gql`
   }
 `;
 
+export const DELETE_EMPLOYEE = gql`
+  mutation DeleteEmployee($_id: ID!) {
+    deleteEmployee(_id: $_id) {
+      _id
+      firstname
+      lastname
+      email
+    }
+  }
+`;
+
+export const UPDATE_AVAILABILITY = gql`
+  mutation UpdateAvailability($_id: ID!, $input: UpdateAvailabilityInput!) {
+    updateAvailability(_id: $_id, input: $input) {
+      _id
+      monday
+      tuesday
+      wednesday
+      thursday
+      friday
+      saturday
+      sunday
+    }
+  }
+`;
+
 // ! GOOD
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {

@@ -4,7 +4,11 @@
 
 .employee-row {
   cursor: pointer;
-  transition: background .2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+
+.employee-row:nth-child(odd) {
+  background-color: lightgrey;
 }
 
 .employee-row:hover {
@@ -13,4 +17,11 @@
 
 .employee-row.selected {
   background-color: skyblue;
+}
+
+.page-break {
+  height: 3px;
+  margin: 20px 10px;
+  background: lightgrey;
+  border-radius: 5px;
 }

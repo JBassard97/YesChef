@@ -137,6 +137,43 @@ const resolvers = {
 
       return updatedEmployee;
     },
+    deleteEmployee: async (parent, { _id }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      const userId = context.user._id;
+
+      const deletedEmployee = await Employee.findByIdAndDelete(_id);
+
+      if (!deletedEmployee) {
+        throw new Error("Employee not found");
+      }
+
+      await User.findByIdAndUpdate(userId, {
+        $pull: { employees: deletedEmployee._id },
+      });
+
+      return deletedEmployee;
+    },
+    updateAvailability: async (parent, { _id, input }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      // Update the availability document
+      const updatedAvailability = await Availability.findOneAndUpdate(
+        { employeeId: _id },
+        { ...input },
+        { new: true }
+      );
+
+      if (!updatedAvailability) {
+        throw new Error("Availability not found or could not be updated.");
+      }
+
+      return updatedAvailability;
+    },
     updateUser: async (parent, { _id, input }) => {
       if (input.password) {
         const saltRounds = 10;

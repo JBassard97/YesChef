@@ -103,7 +103,7 @@ export default function Dashboard() {
                   <tbody>
                     {sortEmployees(employeeData, sortOrder).map(
                       (employee, index) => (
-                        <tr key={index}>
+                        <tr className="employee-row" key={index}>
                           <td>{employee.firstname}</td>
                           <td>{employee.lastname}</td>
                           <td>{employee.position}</td>

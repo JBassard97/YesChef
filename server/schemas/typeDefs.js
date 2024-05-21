@@ -135,9 +135,10 @@ type Mutation {
   deleteUser(_id: ID!): User
   createEmployee(input: CreateEmployeeInput!): Employee
   updateEmployee(_id: ID! input: UpdateEmployeeInput!): Employee
+  deleteEmployee(_id: ID!): Employee
   createContact(contactname: String!, contacttext: String!): Contact!
   deleteContact(_id: ID!): Contact
-  updateAvailability(userId: ID!, input: UpdateAvailabilityInput!): Availability
+  updateAvailability(_id: ID!, input: UpdateAvailabilityInput!): Availability
   updateSchedule(userId: ID!, input: UpdateScheduleInput!): Schedule
 }
 `;

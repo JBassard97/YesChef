@@ -5,6 +5,8 @@ import Auth from "../../utils/auth";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import CreateEmployeeForm from "../../components/CreateEmployeeForm/CreateEmployeeForm";
 import UpdateEmployeeForm from "../../components/UpdateEmployeeForm/UpdateEmployeeForm";
+import DeleteEmployeeForm from "../../components/DeleteEmployeeForm/DeleteEmployeeForm";
+import UpdateAvailabilityForm from "../../components/UpdateAvailabilityForm/UpdateAvailabilityForm";
 import sortEmployees from "../../utils/sortEmployees";
 
 import "./Employees.css";
@@ -47,8 +49,8 @@ export default function Employees() {
     if (rowRefs.current[index]) {
       rowRefs.current[index].scrollIntoView({
         behavior: "smooth",
-        block: "center",
-        inline: "center",
+        block: "start",
+        // inline: "start",
       });
     }
   };
@@ -61,89 +63,115 @@ export default function Employees() {
         <h1 className="page-header">Employees</h1>
 
         {employeeData && (
-          <div className="employee-section-full">
-            <div className="employee-section-header">
-              <h5>Employees: {employeeData?.length}</h5>
-              <select value={sortOrder} onChange={handleSortChange}>
-                <option value="CreatedFirstToLast">Created 1st to Last</option>
-                <option value="CreatedLastToFirst">Created Last to 1st</option>
-                <option value="LastNameAtoZ">Last Name A to Z</option>
-                <option value="LastNameZtoA">Last Name Z to A</option>
-                <option value="FirstNameAtoZ">First Name A to Z</option>
-                <option value="FirstNameZtoA">First Name Z to A</option>
-                <option value="TitleAtoZ">Title A to Z</option>
-                <option value="TitleZtoA">Title Z to A</option>
-                <option value="RateHighToLow">Rate High to Low</option>
-                <option value="RateLowToHigh">Rate Low to High</option>
-              </select>
+          <>
+            <div className="employee-section-full">
+              <div className="employee-section-header">
+                <h5>Employees: {employeeData?.length}</h5>
+                <select value={sortOrder} onChange={handleSortChange}>
+                  <option value="CreatedFirstToLast">
+                    Created 1st to Last
+                  </option>
+                  <option value="CreatedLastToFirst">
+                    Created Last to 1st
+                  </option>
+                  <option value="LastNameAtoZ">Last Name A to Z</option>
+                  <option value="LastNameZtoA">Last Name Z to A</option>
+                  <option value="FirstNameAtoZ">First Name A to Z</option>
+                  <option value="FirstNameZtoA">First Name Z to A</option>
+                  <option value="TitleAtoZ">Title A to Z</option>
+                  <option value="TitleZtoA">Title Z to A</option>
+                  <option value="RateHighToLow">Rate High to Low</option>
+                  <option value="RateLowToHigh">Rate Low to High</option>
+                </select>
+              </div>
+
+              <table className="employee-table">
+                <thead>
+                  <tr>
+                    <th>First</th>
+                    <th>Last</th>
+                    <th>Title</th>
+                    <th>Rate($)</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sortEmployees(employeeData, sortOrder).map(
+                    (employee, index) => (
+                      <React.Fragment key={index}>
+                        <tr
+                          ref={(el) => (rowRefs.current[index] = el)}
+                          className={`employee-row ${
+                            selectedEmployee &&
+                            selectedEmployee._id === employee._id
+                              ? "selected"
+                              : ""
+                          }`}
+                          onClick={() => handleRowClick(employee, index)}
+                        >
+                          <td>{employee.firstname}</td>
+                          <td>{employee.lastname}</td>
+                          <td>{employee.position}</td>
+                          <td>{employee.rate}</td>
+                          <td>
+                            <a
+                              href={`tel:${employee.phone}`}
+                              style={{
+                                textDecoration: "none",
+                                color: "inherit",
+                              }}
+                            >
+                              📞
+                            </a>
+                          </td>
+                          <td>
+                            <a
+                              href={"mailto:" + employee.email}
+                              style={{
+                                textDecoration: "none",
+                                color: "inherit",
+                              }}
+                            >
+                              ✉️
+                            </a>
+                          </td>
+                        </tr>
+                        {selectedEmployee &&
+                          selectedEmployee._id === employee._id && (
+                            <>
+                              <tr>
+                                <td colSpan="6">
+                                  <UpdateEmployeeForm
+                                    employee={selectedEmployee}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colSpan="6">
+                                  <UpdateAvailabilityForm
+                                    employee={selectedEmployee}
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colSpan="6">
+                                  <DeleteEmployeeForm
+                                    employee={selectedEmployee}
+                                  />
+                                </td>
+                              </tr>
+                            </>
+                          )}
+                      </React.Fragment>
+                    )
+                  )}
+                </tbody>
+              </table>
             </div>
 
-            <table className="employee-table">
-              <thead>
-                <tr>
-                  <th>First</th>
-                  <th>Last</th>
-                  <th>Title</th>
-                  <th>Rate($)</th>
-                  <th>Phone</th>
-                  <th>Email</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortEmployees(employeeData, sortOrder).map(
-                  (employee, index) => (
-                    <React.Fragment key={index}>
-                      <tr
-                        ref={(el) => (rowRefs.current[index] = el)}
-                        className={`employee-row ${
-                          selectedEmployee &&
-                          selectedEmployee._id === employee._id
-                            ? "selected"
-                            : ""
-                        }`}
-                        onClick={() => handleRowClick(employee, index)}
-                      >
-                        <td>{employee.firstname}</td>
-                        <td>{employee.lastname}</td>
-                        <td>{employee.position}</td>
-                        <td>{employee.rate}</td>
-                        <td>
-                          <a
-                            href={`tel:${employee.phone}`}
-                            style={{
-                              textDecoration: "none",
-                              color: "inherit",
-                            }}
-                          >
-                            📞
-                          </a>
-                        </td>
-                        <td>
-                          <a
-                            href={"mailto:" + employee.email}
-                            style={{
-                              textDecoration: "none",
-                              color: "inherit",
-                            }}
-                          >
-                            ✉️
-                          </a>
-                        </td>
-                      </tr>
-                      {selectedEmployee &&
-                        selectedEmployee._id === employee._id && (
-                          <tr>
-                            <td colSpan="6">
-                              <UpdateEmployeeForm employee={selectedEmployee} />
-                            </td>
-                          </tr>
-                        )}
-                    </React.Fragment>
-                  )
-                )}
-              </tbody>
-            </table>
-          </div>
+            <div className="page-break"></div>
+          </>
         )}
 
         <CreateEmployeeForm />
@@ -151,4 +179,3 @@ export default function Employees() {
     </>
   );
 }
-

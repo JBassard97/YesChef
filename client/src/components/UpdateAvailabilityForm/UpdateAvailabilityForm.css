@@ -1,0 +1,33 @@
+.update-availability-form {
+  background: khaki;
+  padding: 5px 0px;
+}
+
+.day-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    border: 1px solid black;
+    width: 14%;
+    transition: background-color .3s ease;
+}
+
+.day-item p {
+    margin: 0;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.available {
+  background-color: #6adf6e; /* Green */
+}
+
+.unavailable {
+  background-color: #f1776e; /* Red */
+}
