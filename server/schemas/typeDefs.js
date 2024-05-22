@@ -43,7 +43,6 @@ type Schedule {
   _id: ID
   bossId: ID
   employeeId: ID
-  userId: ID
   monday: String
   tuesday: String
   wednesday: String
@@ -139,7 +138,7 @@ type Mutation {
   createContact(contactname: String!, contacttext: String!): Contact!
   deleteContact(_id: ID!): Contact
   updateAvailability(_id: ID!, input: UpdateAvailabilityInput!): Availability
-  updateSchedule(userId: ID!, input: UpdateScheduleInput!): Schedule
+  updateSchedule(_id: ID!, input: UpdateScheduleInput!): Schedule
 }
 `;
 

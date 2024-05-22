@@ -102,6 +102,20 @@ export const UPDATE_AVAILABILITY = gql`
   }
 `;
 
+export const UPDATE_SCHEDULE = gql`
+  mutation UpdateSchedule($id: ID!, $input: UpdateScheduleInput!) {
+    updateSchedule(_id: $id, input: $input) {
+      monday
+      tuesday
+      wednesday
+      thursday
+      friday
+      saturday
+      sunday
+    }
+  }
+`;
+
 // ! GOOD
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {

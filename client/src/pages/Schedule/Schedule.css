@@ -1,0 +1,32 @@
+.schedule-full {
+  width: 100%;
+  padding-bottom: 5rem;
+}
+
+.schedule-table {
+  width: 100%;
+}
+
+tbody tr td {
+  text-align: center;
+  width: 12.5%;
+  padding: 20px 0px;
+  border: 1px solid black;
+}
+
+.each-name p {
+  margin: 0;
+  font-size: smaller;
+}
+
+.available {
+  background-color: #6adf6e;
+}
+
+.unavailable {
+  background-color: #f1776e;
+}
+
+.time-value-select {
+    font-size: small;
+}

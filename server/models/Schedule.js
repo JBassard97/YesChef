@@ -13,31 +13,31 @@ const scheduleSchema = new Schema(
     },
     monday: {
       type: String,
-      default: "available",
+      default: "12:00 AM - 12:00 AM",
     },
     tuesday: {
       type: String,
-      default: "available",
+      default: "12:00 AM - 12:00 AM",
     },
     wednesday: {
       type: String,
-      default: "available",
+      default: "12:00 AM - 12:00 AM",
     },
     thursday: {
       type: String,
-      default: "available",
+      default: "12:00 AM - 12:00 AM",
     },
     friday: {
       type: String,
-      default: "available",
+      default: "12:00 AM - 12:00 AM",
     },
     saturday: {
       type: String,
-      default: "available",
+      default: "12:00 AM - 12:00 AM",
     },
     sunday: {
       type: String,
-      default: "available",
+      default: "12:00 AM - 12:00 AM",
     },
   },
   {

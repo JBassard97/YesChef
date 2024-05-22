@@ -174,6 +174,25 @@ const resolvers = {
 
       return updatedAvailability;
     },
+    updateSchedule: async (parent, { _id, input }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      const updatedSchedule = await Schedule.findByIdAndUpdate(
+        _id,
+        { ...input },
+        { new: true, useFindAndModify: false }
+      );
+
+      if (!updatedSchedule) {
+        throw new Error(
+          `Schedule not found or could not be updated for ID: ${_id}.`
+        );
+      }
+
+      return updatedSchedule;
+    },
     updateUser: async (parent, { _id, input }) => {
       if (input.password) {
         const saltRounds = 10;
