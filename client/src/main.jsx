@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import Contacts from "./pages/Contacts/Contacts.jsx";
 import Employees from "./pages/Employees/Employees.jsx";
 import Schedule from "./pages/Schedule/Schedule.jsx";
+import Settings from "./pages/Settings/Settings.jsx";
 
 // ! Footer pages
 import Help from "./pages/Help/Help.jsx";
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "/schedule",
         element: <Schedule />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
       },
     ],
   },

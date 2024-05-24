@@ -5,6 +5,8 @@ import { GET_CURRENT_USER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import "./Contacts.css";
+import sortContacts from "../../utils/sortContacts";
+import currentDateAndTime from "../../utils/currentDateAndTime";
 
 const Contacts = () => {
   // States for createContact mutation
@@ -12,6 +14,8 @@ const Contacts = () => {
     useMutation(CREATE_CONTACT);
   const [contactname, setContactName] = useState("");
   const [contacttext, setContactText] = useState("");
+  const [sortContactOrder, setSortContactOrder] =
+    useState("CreatedFirstToLast");
 
   // State for deleteContact mutation
   const [deleteContact, { loading: deleteLoading, error: deleteError }] =
@@ -95,18 +99,68 @@ const Contacts = () => {
       setContactData((prevContacts) =>
         prevContacts.filter((contact) => contact._id !== id)
       );
-
     } catch (err) {
       console.error("Error deleting contact:", err);
     }
   };
 
+  const handleContSortChange = (event) => {
+    setSortContactOrder(event.target.value);
+  };
+
   return (
     <>
-      <DashboardHeader />
-
       <div className="contacts-full">
-        <h1 className="page-header">Contacts</h1>
+        <DashboardHeader />
+
+        <div className="top-info">
+          <h1 className="page-header">Contacts</h1>
+          <p className="current-date-time">{currentDateAndTime()}</p>
+        </div>
+
+        {contactData && (
+          <>
+            <div className="contact-section-header">
+              <h5>Contacts: {contactData?.length}</h5>
+              <select value={sortContactOrder} onChange={handleContSortChange}>
+                <option value="CreatedFirstToLast">Created 1st to Last</option>
+                <option value="CreatedLastToFirst">Created Last to 1st</option>
+                <option value="ContactNameAtoZ">Contact Name A to Z</option>
+                <option value="ContactNameZtoA">Contact Name Z to A</option>
+              </select>
+            </div>
+            <table className="contact-table">
+              <thead>
+                <tr>
+                  <th>Contact</th>
+                  <th>Details</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortContacts(contactData, sortContactOrder).map(
+                  (contact, index) => (
+                    <tr key={index}>
+                      <td>{contact.contactname}</td>
+                      <td>{contact.contacttext}</td>
+                      <td>
+                        <button
+                          onClick={() => handleDelete(contact._id)}
+                          disabled={deleteLoading}
+                        >
+                          {deleteLoading ? "Deleting..." : "Delete"}
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
+
+            <div className="page-break"></div>
+          </>
+        )}
+        {deleteError && <p>Error: {deleteError.message}</p>}
 
         <form className="contact-form" onSubmit={handleSubmit}>
           <h5>Create Contact</h5>
@@ -134,38 +188,6 @@ const Contacts = () => {
           </button>
           {createError && <p>Error: {createError.message}</p>}
         </form>
-
-        {contactData && (
-          <>
-            <table className="contact-table">
-              <thead>
-                <tr>
-                  <th>Contact</th>
-                  <th>Details</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[...contactData].reverse().map((contact, index) => (
-                  <tr key={index}>
-                    <td>{contact.contactname}</td>
-                    <td>{contact.contacttext}</td>
-                    {/* Add deleteContact functionality to this button */}
-                    <td>
-                      <button
-                        onClick={() => handleDelete(contact._id)}
-                        disabled={deleteLoading}
-                      >
-                        {deleteLoading ? "Deleting..." : "Delete"}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </>
-        )}
-        {deleteError && <p>Error: {deleteError.message}</p>}
       </div>
     </>
   );

@@ -8,7 +8,7 @@ import UpdateEmployeeForm from "../../components/UpdateEmployeeForm/UpdateEmploy
 import DeleteEmployeeForm from "../../components/DeleteEmployeeForm/DeleteEmployeeForm";
 import UpdateAvailabilityForm from "../../components/UpdateAvailabilityForm/UpdateAvailabilityForm";
 import sortEmployees from "../../utils/sortEmployees";
-
+import currentDateAndTime from "../../utils/currentDateAndTime";
 import "./Employees.css";
 
 export default function Employees() {
@@ -57,10 +57,13 @@ export default function Employees() {
 
   return (
     <>
-      <DashboardHeader />
-
       <div className="employees-full">
-        <h1 className="page-header">Employees</h1>
+        <DashboardHeader />
+
+        <div className="top-info">
+          <h1 className="page-header">Employees</h1>
+          <p className="current-date-time">{currentDateAndTime()}</p>
+        </div>
 
         {employeeData && (
           <>

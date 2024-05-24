@@ -59,3 +59,17 @@
   background: lightgrey;
   border-radius: 5px;
 }
+
+.contact-details {
+  background: lightgrey;
+}
+
+.dashboard-schedule-day{
+  font-size: smaller;
+}
+
+.dashboard-schedule-header {
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
+}

@@ -150,6 +150,10 @@ const resolvers = {
         throw new Error("Employee not found");
       }
 
+      await Availability.findByIdAndDelete(deletedEmployee.availability._id);
+
+      await Schedule.findByIdAndDelete(deletedEmployee.schedule._id);
+
       await User.findByIdAndUpdate(userId, {
         $pull: { employees: deletedEmployee._id },
       });
@@ -169,7 +173,13 @@ const resolvers = {
       );
 
       if (!updatedAvailability) {
-        throw new Error("Availability not found or could not be updated.");
+        const otherUpdatedAvailability = await Availability.findOneAndUpdate(
+          { bossId: _id },
+          { ...input },
+          { new: true }
+        );
+
+        return otherUpdatedAvailability;
       }
 
       return updatedAvailability;

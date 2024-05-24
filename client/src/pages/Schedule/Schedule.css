@@ -16,7 +16,8 @@ tbody tr td {
 
 .each-name p {
   margin: 0;
-  font-size: smaller;
+  font-size: x-small;
+  font-weight: bold;
 }
 
 .available {
@@ -28,5 +29,13 @@ tbody tr td {
 }
 
 .time-value-select {
-    font-size: small;
+  font-size: small;
+}
+
+.edit-schedule-button {
+  background-color: transparent;
+  border: transparent;
+  height: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
 }
