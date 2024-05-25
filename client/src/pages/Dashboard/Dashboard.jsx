@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { GET_CURRENT_USER } from "../../utils/queries";
 import Auth from "../../utils/auth";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
+import EmailSchedulesButton from "../../components/EmailSchedulesButton/EmailSchedulesButton";
 import currentDateAndTime from "../../utils/currentDateAndTime";
 import sortEmployees from "../../utils/sortEmployees";
 import sortContacts from "../../utils/sortContacts";
@@ -153,6 +154,7 @@ export default function Dashboard() {
 
                 <div className="dashboard-schedule-header">
                   <h5>Current Schedule</h5>
+                  <EmailSchedulesButton/>
                 </div>
                 <table className="schedule-table">
                   <thead>

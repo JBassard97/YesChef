@@ -139,6 +139,7 @@ type Mutation {
   deleteContact(_id: ID!): Contact
   updateAvailability(_id: ID!, input: UpdateAvailabilityInput!): Availability
   updateSchedule(_id: ID!, input: UpdateScheduleInput!): Schedule
+  emailSchedules: User
 }
 `;
 

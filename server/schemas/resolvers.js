@@ -216,9 +216,9 @@ const resolvers = {
     },
     // ! GOOD
     login: async (parent, { email, password }) => {
-      console.log(email, password);
+      // console.log(email, password);
       const user = await User.findOne({ email });
-      console.log(user);
+      // console.log(user);
 
       if (!user) {
         throw AuthenticationError;
@@ -249,6 +249,36 @@ const resolvers = {
       } catch (error) {
         console.error("Error deleting user:", error);
         throw new Error("An error occurred while deleting the user.");
+      }
+    },
+    emailSchedules: async (parent, args, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      const userId = context.user._id;
+      try {
+        const user = await User.findById(userId)
+          .populate("availability")
+          .populate("schedule");
+        const employees = await Employee.find({ bossId: userId })
+          .populate("availability")
+          .populate("schedule");
+
+        if (!user || !employees) {
+          throw new Error("User or Employees not found");
+        }
+        console.clear();
+        // console.log("User found:", user);
+
+        let bossAndEmpsArray = [user, ...employees];
+
+        console.log(bossAndEmpsArray);
+
+        return user;
+      } catch (error) {
+        console.error("Error fetching user:", error);
+        throw new Error("Failed to email schedules");
       }
     },
   },

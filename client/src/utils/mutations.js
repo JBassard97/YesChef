@@ -136,3 +136,11 @@ export const DELETE_USER = gql`
     }
   }
 `;
+
+export const EMAIL_SCHEDULES = gql`
+  mutation EmailSchedules {
+    emailSchedules {
+      _id
+    }
+  }
+`;
