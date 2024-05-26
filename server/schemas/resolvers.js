@@ -7,6 +7,9 @@ const {
 } = require("../models");
 const bcrypt = require("bcrypt");
 const { signToken, AuthenticationError } = require("../utils/auth");
+const { createSchedulePDF } = require("../utils/createSchedulePDF");
+const path = require("path");
+const { sendEmailWithPDF } = require("../utils/sendEmailWithPDF");
 
 const resolvers = {
   Query: {
@@ -268,12 +271,20 @@ const resolvers = {
         if (!user || !employees) {
           throw new Error("User or Employees not found");
         }
-        console.clear();
-        // console.log("User found:", user);
 
         let bossAndEmpsArray = [user, ...employees];
 
-        console.log(bossAndEmpsArray);
+        const pdfFileName = await createSchedulePDF(bossAndEmpsArray);
+        const pdfFilePath = path.resolve(__dirname, pdfFileName);
+        console.log("PDF Created:\n", pdfFileName);
+        console.log("Pdf Path:", pdfFilePath);
+
+        for (const person of bossAndEmpsArray) {
+          const email = person.email;
+          if (email) {
+            await sendEmailWithPDF(email, pdfFilePath);
+          }
+        }
 
         return user;
       } catch (error) {
