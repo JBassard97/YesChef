@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // ! Not logged in pages
 import Signup from "./pages/Signup/Signup.jsx";
-import Login from "./pages/Login/Login.jsx";
 
 // ! Logged in pages
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
@@ -20,6 +19,8 @@ import Testimonials from "./pages/Testimonials/Testimonials.jsx";
 import About from "./pages/About/About.jsx";
 import Developer from "./pages/Developer/Developer.jsx";
 import Stats from "./pages/Stats/Stats.jsx";
+
+import Login from "./pages/Login/Login.jsx";
 
 const router = createBrowserRouter([
   {
