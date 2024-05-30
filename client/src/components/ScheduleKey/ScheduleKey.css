@@ -1,0 +1,38 @@
+.schedule-key-full {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.schedule-key {
+  border: 1px solid black;
+  padding: 10px;
+  background-color: lightgray;
+  border-radius: 10px;
+}
+
+.schedule-key p {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.green-box,
+.red-box {
+  border: 1px solid black;
+  width: 20px;
+  aspect-ratio: 1;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green-box {
+  background-color: #6adf6e;
+}
+
+.red-box {
+  background-color: #f1776e;
+}

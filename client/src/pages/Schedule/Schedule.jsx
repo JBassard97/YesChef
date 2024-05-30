@@ -4,6 +4,7 @@ import { GET_CURRENT_USER } from "../../utils/queries";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import Auth from "../../utils/auth";
 import UpdateScheduleForm from "../../components/UpdateScheduleForm/UpdateScheduleForm";
+import ScheduleKey from "../../components/ScheduleKey/ScheduleKey";
 import currentDateAndTime from "../../utils/currentDateAndTime";
 import "./Schedule.css";
 
@@ -88,6 +89,8 @@ export default function Schedule() {
           <h1 className="page-header">Schedule</h1>
           <p className="current-date-time">{currentDateAndTime()}</p>
         </div>
+
+        <ScheduleKey/>
 
         {userAndEmps && (
           <>

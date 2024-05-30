@@ -5,12 +5,12 @@ import "./UpdateScheduleForm.css";
 
 export default function ScheduleForm({ scheduleId, day, closeForm }) {
   const [startTime, setStartTime] = useState({
-    hour: "12",
+    hour: "1",
     minute: "00",
     period: "AM",
   });
   const [endTime, setEndTime] = useState({
-    hour: "12",
+    hour: "1",
     minute: "00",
     period: "AM",
   });
@@ -47,10 +47,28 @@ export default function ScheduleForm({ scheduleId, day, closeForm }) {
         },
       });
       console.log("Updated Schedule:", data);
-        closeForm(); // Close the form after successful update
-        window.location.reload();
+      closeForm(); // Close the form after successful update
+      window.location.reload();
     } catch (error) {
       console.error("Error updating schedule:", error);
+    }
+  };
+
+  const handleDayOff = async () => {
+    try {
+      const { data } = await updateSchedule({
+        variables: {
+          id: scheduleId,
+          input: {
+            [day]: "OFF",
+          },
+        },
+      });
+      console.log("Updated Schedule:", data);
+      closeForm();
+      window.location.reload();
+    } catch (error) {
+      console.error("Error giving Day Off", error);
     }
   };
 
@@ -114,6 +132,7 @@ export default function ScheduleForm({ scheduleId, day, closeForm }) {
         </select>
       </div>
       <button onClick={handleUpdateSchedule}>Save</button>
+      <button onClick={handleDayOff}>Day Off</button>
       <button onClick={closeForm}>Cancel</button>
     </div>
   );

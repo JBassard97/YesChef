@@ -1,22 +1,22 @@
-const nodemailer = require("nodemailer");
+var nodemailer = require("nodemailer");
 
 async function sendEmailWithPDF(email, pdfFilePath) {
   try {
     // Create a transporter to send the email
-    const transporter = nodemailer.createTransport({
-      service: "yahoo",
+    var transporter = nodemailer.createTransport({
+      service: "Gmail",
       auth: {
-        user: "yeschefapp.schedules@yahoo.com",
-        pass: "Y3SCH3FAPPLICATION",
+        user: "yeschefapplication@gmail.com",
+        pass: "ankt obne zepa rxaj",
       },
     });
 
     // Setup email data
     const mailOptions = {
-      from: "yeschefapp.schedules@yahoo.com",
+      from: "yeschefapplication@gmail.com",
       to: email,
-      subject: "Employee Schedule PDF",
-      text: "Attached is the PDF containing the employee schedules.",
+      subject: "Store Schedule PDF",
+      text: "Attached is the most recently updated schedule for your store",
       attachments: [
         {
           filename: "schedules.pdf",

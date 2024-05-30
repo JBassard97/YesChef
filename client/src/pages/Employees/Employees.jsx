@@ -87,90 +87,91 @@ export default function Employees() {
                   <option value="RateLowToHigh">Rate Low to High</option>
                 </select>
               </div>
-
-              <table className="employee-table">
-                <thead>
-                  <tr>
-                    <th>First</th>
-                    <th>Last</th>
-                    <th>Title</th>
-                    <th>Rate($)</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sortEmployees(employeeData, sortOrder).map(
-                    (employee, index) => (
-                      <React.Fragment key={index}>
-                        <tr
-                          ref={(el) => (rowRefs.current[index] = el)}
-                          className={`employee-row ${
-                            selectedEmployee &&
-                            selectedEmployee._id === employee._id
-                              ? "selected"
-                              : ""
-                          }`}
-                          onClick={() => handleRowClick(employee, index)}
-                        >
-                          <td>{employee.firstname}</td>
-                          <td>{employee.lastname}</td>
-                          <td>{employee.position}</td>
-                          <td>{employee.rate}</td>
-                          <td>
-                            <a
-                              href={`tel:${employee.phone}`}
-                              style={{
-                                textDecoration: "none",
-                                color: "inherit",
-                              }}
-                            >
-                              📞
-                            </a>
-                          </td>
-                          <td>
-                            <a
-                              href={"mailto:" + employee.email}
-                              style={{
-                                textDecoration: "none",
-                                color: "inherit",
-                              }}
-                            >
-                              ✉️
-                            </a>
-                          </td>
-                        </tr>
-                        {selectedEmployee &&
-                          selectedEmployee._id === employee._id && (
-                            <>
-                              <tr>
-                                <td colSpan="6">
-                                  <UpdateEmployeeForm
-                                    employee={selectedEmployee}
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td colSpan="6">
-                                  <UpdateAvailabilityForm
-                                    employee={selectedEmployee}
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td colSpan="6">
-                                  <DeleteEmployeeForm
-                                    employee={selectedEmployee}
-                                  />
-                                </td>
-                              </tr>
-                            </>
-                          )}
-                      </React.Fragment>
-                    )
-                  )}
-                </tbody>
-              </table>
+              {employeeData.length > 0 && (
+                <table className="employee-table">
+                  <thead>
+                    <tr>
+                      <th>First</th>
+                      <th>Last</th>
+                      <th>Title</th>
+                      <th>Rate($)</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sortEmployees(employeeData, sortOrder).map(
+                      (employee, index) => (
+                        <React.Fragment key={index}>
+                          <tr
+                            ref={(el) => (rowRefs.current[index] = el)}
+                            className={`employee-row ${
+                              selectedEmployee &&
+                              selectedEmployee._id === employee._id
+                                ? "selected"
+                                : ""
+                            }`}
+                            onClick={() => handleRowClick(employee, index)}
+                          >
+                            <td>{employee.firstname}</td>
+                            <td>{employee.lastname}</td>
+                            <td>{employee.position}</td>
+                            <td>{employee.rate}</td>
+                            <td>
+                              <a
+                                href={`tel:${employee.phone}`}
+                                style={{
+                                  textDecoration: "none",
+                                  color: "inherit",
+                                }}
+                              >
+                                📞
+                              </a>
+                            </td>
+                            <td>
+                              <a
+                                href={"mailto:" + employee.email}
+                                style={{
+                                  textDecoration: "none",
+                                  color: "inherit",
+                                }}
+                              >
+                                ✉️
+                              </a>
+                            </td>
+                          </tr>
+                          {selectedEmployee &&
+                            selectedEmployee._id === employee._id && (
+                              <>
+                                <tr>
+                                  <td colSpan="6">
+                                    <UpdateEmployeeForm
+                                      employee={selectedEmployee}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td colSpan="6">
+                                    <UpdateAvailabilityForm
+                                      employee={selectedEmployee}
+                                    />
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td colSpan="6">
+                                    <DeleteEmployeeForm
+                                      employee={selectedEmployee}
+                                    />
+                                  </td>
+                                </tr>
+                              </>
+                            )}
+                        </React.Fragment>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              )}
             </div>
 
             <div className="page-break"></div>

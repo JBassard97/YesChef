@@ -129,33 +129,35 @@ const Contacts = () => {
                 <option value="ContactNameZtoA">Contact Name Z to A</option>
               </select>
             </div>
-            <table className="contact-table">
-              <thead>
-                <tr>
-                  <th>Contact</th>
-                  <th>Details</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortContacts(contactData, sortContactOrder).map(
-                  (contact, index) => (
-                    <tr key={index}>
-                      <td>{contact.contactname}</td>
-                      <td>{contact.contacttext}</td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(contact._id)}
-                          disabled={deleteLoading}
-                        >
-                          {deleteLoading ? "Deleting..." : "Delete"}
-                        </button>
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+            {contactData.length > 0 && (
+              <table className="contact-table">
+                <thead>
+                  <tr>
+                    <th>Contact</th>
+                    <th>Details</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sortContacts(contactData, sortContactOrder).map(
+                    (contact, index) => (
+                      <tr key={index}>
+                        <td>{contact.contactname}</td>
+                        <td>{contact.contacttext}</td>
+                        <td>
+                          <button
+                            onClick={() => handleDelete(contact._id)}
+                            disabled={deleteLoading}
+                          >
+                            {deleteLoading ? "Deleting..." : "Delete"}
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            )}
 
             <div className="page-break"></div>
           </>
