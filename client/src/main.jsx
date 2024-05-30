@@ -4,8 +4,8 @@ import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // ! Not logged in pages
-import Login from "/pages/Login/Login.jsx";
 import Signup from "./pages/Signup/Signup.jsx";
+import Login from "./pages/Login/Login.jsx";
 
 // ! Logged in pages
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";

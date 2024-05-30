@@ -6,24 +6,6 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [
     react(),
-    // VitePWA({
-    //   manifest: {
-    //     name: "PollR",
-    //     short_name: "PollR",
-    //     start_url: "./",
-    //     display: "standalone",
-    //     background_color: "#ffffff",
-    //     theme_color: "#000000",
-    //     icons: [
-    //       {
-    //         src: "./icons/PollR-logo-Color-512_x_512.png",
-    //         sizes: "512x512",
-    //         type: "image/png",
-    //         purpose: "any maskable",
-    //       },
-    //     ],
-    //   },
-    // }),
   ],
   server: {
     port: 3000,
