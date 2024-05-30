@@ -20,7 +20,7 @@ import About from "./pages/About/About.jsx";
 import Developer from "./pages/Developer/Developer.jsx";
 import Stats from "./pages/Stats/Stats.jsx";
 
-import Login from "./pages/Login/Login.jsx";
+import Login from "./pages/Login/login.jsx";
 
 const router = createBrowserRouter([
   {
