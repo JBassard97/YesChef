@@ -7,9 +7,10 @@ const {
 } = require("../models");
 const bcrypt = require("bcrypt");
 const { signToken, AuthenticationError } = require("../utils/auth");
-const { createSchedulePDF } = require("../utils/createSchedulePDF");
+// const { createSchedulePDF } = require("../utils/createSchedulePDF");
 const path = require("path");
-const { sendEmailWithPDF } = require("../utils/sendEmailWithPDF");
+// const { sendEmailWithPDF } = require("../utils/sendEmailWithPDF");
+const { sendEmail } = require("../utils/sendEmail");
 
 const resolvers = {
   Query: {
@@ -274,15 +275,16 @@ const resolvers = {
 
         let bossAndEmpsArray = [user, ...employees];
 
-        const pdfFileName = await createSchedulePDF(bossAndEmpsArray);
-        const pdfFilePath = path.resolve(__dirname, pdfFileName);
-        console.log("PDF Created:\n", pdfFileName);
-        console.log("Pdf Path:", pdfFilePath);
+        // const pdfFileName = await createSchedulePDF(bossAndEmpsArray);
+        // const pdfFilePath = path.resolve(__dirname, pdfFileName);
+        // console.log("PDF Created:\n", pdfFileName);
+        // console.log("Pdf Path:", pdfFilePath);
 
         for (const person of bossAndEmpsArray) {
           const email = person.email;
           if (email) {
-            await sendEmailWithPDF(email, pdfFilePath);
+            // await sendEmailWithPDF(email, pdfFilePath);
+            await sendEmail(email, person.availability, person.schedule);
           }
         }
 
