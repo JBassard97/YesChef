@@ -1,0 +1,15 @@
+.printable-full {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.print-button {
+    margin-bottom: 10px;
+}
+
+.printable-full .schedule-table tbody tr td {
+    padding: 0;
+}

@@ -15,8 +15,9 @@ async function sendEmail(email, availability, schedule) {
     const mailOptions = {
       from: "yeschefapplication@gmail.com",
       to: email,
-      subject: "Store Schedule PDF",
+      subject: "Store Schedule",
       text: `Here is your schedule for the coming week:
+      
         Monday: ${availability.monday == "unavailable" ? "UNAVAILABLE" : schedule.monday}
         Tuesday: ${availability.tuesday == "unavailable" ? "UNAVAILABLE" : schedule.tuesday}
         Wednesday: ${availability.wednesday == "unavailable" ? "UNAVAILABLE" : schedule.wednesday}

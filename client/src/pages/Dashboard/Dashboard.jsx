@@ -154,7 +154,10 @@ export default function Dashboard() {
 
                 <div className="dashboard-schedule-header">
                   <h5>Current Schedule</h5>
-                  <EmailSchedulesButton/>
+                  <EmailSchedulesButton />
+                  <button>
+                    <Link to="/printable">View Printable</Link>
+                  </button>
                 </div>
                 <table className="schedule-table">
                   <thead>
