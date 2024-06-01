@@ -12,6 +12,7 @@ import Contacts from "./pages/Contacts/Contacts.jsx";
 import Employees from "./pages/Employees/Employees.jsx";
 import Schedule from "./pages/Schedule/Schedule.jsx";
 import Settings from "./pages/Settings/Settings.jsx";
+import PrintableSchedule from "./pages/PrintableSchedule/PrintableSchedule.jsx";
 
 // ! Footer pages
 import Help from "./pages/Help/Help.jsx";
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/settings",
         element: <Settings />,
+      },
+      {
+        path: "/printable",
+        element: <PrintableSchedule />,
       },
     ],
   },

@@ -6,10 +6,27 @@ body {
   padding: 0;
 }
 
+.dashboard-full,
+.schedule-full,
+.employees-full,
+.settings-full,
+.contacts-full,
+.printable-full {
+  background-image: none;
+  background-color: white;
+  height: 100%;
+}
+
+.login-full,
+.signup-full {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
 #root {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-image: url("./assets/kitchen-background.jpg");
 }
 
 .page-header {
